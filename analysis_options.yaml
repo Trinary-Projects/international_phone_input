@@ -1,6 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  exclude:
+    - lib/src/core/data/country_list.dart
   plugins:
     - dart_code_metrics
 
