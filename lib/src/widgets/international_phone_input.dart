@@ -40,46 +40,32 @@ class InternationalPhoneInput extends StatefulWidget {
 }
 
 class _InternationalPhoneInputState extends State<InternationalPhoneInput> {
-  late final TextEditingController _textEditingController;
-  @override
-  void initState() {
-    _textEditingController = TextEditingController.fromValue(
-      widget.phoneEditingController.value.numberEditingValue,
-    );
-    widget.phoneEditingController.addListener(() {
-      _textEditingController.text = widget.phoneEditingController.phoneNumber;
-      setState(() {
-        // We rebuild the widget to display the latest
-        // [widget.phoneEditingController]
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(final BuildContext context) => TextField(
-        controller: _textEditingController,
+        controller: widget.phoneEditingController,
         decoration: InputDecoration(
-          prefixIcon: CountryItem(
-            country: widget.phoneEditingController.value.country,
-            onTap: () {
-              showDialog<Country>(
-                context: context,
-                builder: (final BuildContext context) =>
-                    const CountryListDialog(),
-              ).then((final Country? value) {
-                if (value == null) {
-                  return;
-                }
-                widget.phoneEditingController.countryCode = value.alpha2Code;
-              });
-            },
+          prefixIcon: ValueListenableBuilder<dynamic>(
+            valueListenable: widget.phoneEditingController,
+            builder: (
+              final BuildContext context,
+              final dynamic value,
+              final Widget? child,
+            ) =>
+                CountryItem(
+              country: widget.phoneEditingController.country,
+              onTap: () {
+                showDialog<Country>(
+                  context: context,
+                  builder: (final BuildContext context) =>
+                      const CountryListDialog(),
+                ).then((final Country? value) {
+                  if (value == null) {
+                    return;
+                  }
+                  widget.phoneEditingController.countryCode = value.alpha2Code;
+                });
+              },
+            ),
           ),
           prefixIconConstraints: const BoxConstraints(
             maxHeight: 36,
