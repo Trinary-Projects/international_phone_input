@@ -15,7 +15,7 @@ class Country {
         name: 'India',
         alpha2Code: 'IN',
         alpha3Code: 'IND',
-        dialCode: '91',
+        dialCode: '+91',
       );
 
   /// Creates a Country object from the given [map].

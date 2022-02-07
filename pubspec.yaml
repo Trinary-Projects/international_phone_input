@@ -10,12 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   assets:
     - assets/flags/
+    - assets/icons/

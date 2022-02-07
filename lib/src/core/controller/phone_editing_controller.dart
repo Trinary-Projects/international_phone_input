@@ -61,12 +61,26 @@ class PhoneEditingController extends ValueNotifier<PhoneEditingValue> {
     );
   }
 
+  /// The current ISO-Alpha2 country code [String].
+  String get countryDialCode => value.country.dialCode;
+
+  /// Set the current country [Country] using countryCode [String].
+  ///
+  /// Setting this will notify all the listeners that they need to update
+  /// (it calls [notifyListeners]). For this reason, this value should only
+  /// be set between frames, e.g. in response to user actions, not during the
+  /// build, layout, or paint phases.
+  set countryDialCode(final String newDialCode) {
+    value = value.copyWith(
+      country: CountryProvider.getCountryData(dialCode: newDialCode),
+    );
+  }
+
   /// Set the current [value] to empty.
   ///
   /// After calling this function, [phoneNumber] will be the empty string and
   /// the selection will be collapsed at zero offset.
   void clear() {
-    print('clear function in PhoneEditingController');
     value = PhoneEditingValue(
       numberEditingValue: TextEditingValue.empty,
       country: Country.empty(),

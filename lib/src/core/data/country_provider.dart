@@ -15,20 +15,47 @@ class CountryProvider {
         .toList();
   }
 
-  /// Returns a [Country], if [countryCode] is valid and matches a [Country]
-  /// from the [Countries.countryList] else returns [Country.empty]:-
-  /// * If [countryCode] is as empty [String].
-  /// * If no matches are found.
-  static Country getCountryData({required final String countryCode}) {
+  /// Searches the list of all the [Country] objects in [Countries] and returns
+  /// a set of matching results.
+  static List<Country> searchCountries(final String hint) {
+    final List<Country> countries = getAllCountriesData();
+    return countries
+        .where(
+          (final Country country) =>
+              country.alpha3Code.toLowerCase().startsWith(hint.toLowerCase()) ||
+              country.name.toLowerCase().contains(hint.toLowerCase()) ||
+              country.dialCode.contains(hint.toLowerCase()),
+        )
+        .toList();
+  }
+
+  /// Returns a [Country], based on the passed parameters.
+  ///
+  /// Either [countryCode] or [dialCode] must be provided.
+  /// Returns [Country.empty] if:-
+  /// * [countryCode] or [dialCode] is an empty [String].
+  /// * If no match are found.
+  static Country getCountryData({
+    final String? countryCode,
+    final String? dialCode,
+  }) {
     final List<Country> countries = getAllCountriesData();
 
     if (countries.isEmpty) {
       return Country.empty();
     }
-
-    return countries.firstWhere(
-      (final Country country) => country.alpha2Code == countryCode,
-      orElse: () => Country.empty(),
-    );
+    if (countryCode != null) {
+      return countries.firstWhere(
+        (final Country country) => country.alpha2Code == countryCode,
+        orElse: () => Country.empty(),
+      );
+    } else if (dialCode != null) {
+      return countries.firstWhere(
+        (final Country country) => country.dialCode == '+$dialCode',
+        orElse: () => Country.empty(),
+      );
+    } else {
+      return Country.empty();
+    }
   }
 }
