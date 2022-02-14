@@ -43,6 +43,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInput> {
   @override
   Widget build(final BuildContext context) => TextField(
         controller: widget.phoneEditingController,
+        keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           prefixIcon: ValueListenableBuilder<dynamic>(
             valueListenable: widget.phoneEditingController,
