@@ -15,6 +15,7 @@ class InternationalPhoneInput extends StatefulWidget {
     required final this.phoneEditingController,
     required this.focusNode,
     final this.suffix,
+    final this.errorText,
     final Key? key,
   }) : super(key: key);
 
@@ -24,6 +25,7 @@ class InternationalPhoneInput extends StatefulWidget {
   /// The suffix icon button in [TextField]
   final Widget? suffix;
   final FocusNode focusNode;
+  final String? errorText;
 
   @override
   State<InternationalPhoneInput> createState() =>
@@ -48,6 +50,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInput> {
         focusNode: widget.focusNode,
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
+          errorText: widget.errorText,
           prefixIcon: ValueListenableBuilder<dynamic>(
             valueListenable: widget.phoneEditingController,
             builder: (
