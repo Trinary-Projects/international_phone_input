@@ -73,7 +73,7 @@ class _CountryListDialogState extends State<CountryListDialog> {
                   prefixIconConstraints: BoxConstraints.tight(
                     const Size(48, 24),
                   ),
-                  hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  hintStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontWeight: FontWeight.w400,
                         height: 0.5,
                         color: const Color(0xFF9E9E9E),
@@ -120,7 +120,7 @@ class _CountryListDialogState extends State<CountryListDialog> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -128,7 +128,7 @@ class _CountryListDialogState extends State<CountryListDialog> {
 
 class _CountryTile extends StatelessWidget {
   const _CountryTile(
-    final this.country, {
+    this.country, {
     final Key? key,
   }) : super(key: key);
 
@@ -146,13 +146,13 @@ class _CountryTile extends StatelessWidget {
         ),
         title: Text(
           country.name,
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
         subtitle: Text(
           country.dialCode,
-          style: Theme.of(context).textTheme.caption!.copyWith(
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFF616161),
               ),

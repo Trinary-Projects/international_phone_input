@@ -11,8 +11,8 @@ class PhoneEditingValue {
   /// The [numberEditingValue], and [country] arguments must not be null but
   /// each have default values.
   const PhoneEditingValue({
-    required final this.numberEditingValue,
-    required final this.country,
+    required this.numberEditingValue,
+    required this.country,
   });
 
   /// The current phone number as [TextEditingValue].

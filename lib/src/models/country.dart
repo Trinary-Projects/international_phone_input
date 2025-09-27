@@ -3,10 +3,10 @@
 class Country {
   /// Creates an object of the [Country] data class.
   Country({
-    required final this.name,
-    required final this.alpha2Code,
-    required final this.alpha3Code,
-    required final this.dialCode,
+    required this.name,
+    required this.alpha2Code,
+    required this.alpha3Code,
+    required this.dialCode,
     final String? flagUri,
   }) : flagUri = flagUri ?? 'assets/flags/${alpha2Code.toLowerCase()}.png';
 

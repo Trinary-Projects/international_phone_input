@@ -12,10 +12,10 @@ import 'country_list_dialog.dart';
 class InternationalPhoneInput extends StatefulWidget {
   /// {@macro internation_phone_input}
   const InternationalPhoneInput({
-    required final this.phoneEditingController,
+    required this.phoneEditingController,
     required this.focusNode,
-    final this.suffix,
-    final this.errorText,
+    this.suffix,
+    this.errorText,
     final Key? key,
   }) : super(key: key);
 
@@ -24,7 +24,11 @@ class InternationalPhoneInput extends StatefulWidget {
 
   /// The suffix icon button in [TextField]
   final Widget? suffix;
+
+  /// The [FocusNode] to manage focus for the internal [TextField].
   final FocusNode focusNode;
+
+  /// Optional error text to display below the [TextField].
   final String? errorText;
 
   @override
@@ -34,12 +38,16 @@ class InternationalPhoneInput extends StatefulWidget {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-      DiagnosticsProperty<PhoneEditingController>(
-        'phoneEditingController',
-        phoneEditingController,
-      ),
-    );
+    properties
+      ..add(
+        DiagnosticsProperty<PhoneEditingController>(
+          'phoneEditingController',
+          phoneEditingController,
+        ),
+      )
+      ..add(DiagnosticsProperty<FocusNode>('focusNode', focusNode))
+      ..add(DiagnosticsProperty<Widget>('suffix', suffix))
+      ..add(StringProperty('errorText', errorText));
   }
 }
 

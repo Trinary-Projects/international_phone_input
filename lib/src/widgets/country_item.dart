@@ -8,8 +8,8 @@ class CountryItem extends StatelessWidget {
   /// Creates a item to represent the selected country and provides a [onTap]
   /// callback.
   const CountryItem({
-    required final this.country,
-    required final this.onTap,
+    required this.country,
+    required this.onTap,
     final Key? key,
   }) : super(key: key);
 
@@ -44,7 +44,7 @@ class CountryItem extends StatelessWidget {
           label: Text(
             country.dialCode,
             maxLines: 1,
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: const Color(0xFF616161),
                 ),
           ),
